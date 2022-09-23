@@ -1,0 +1,137 @@
+{
+  "$id": "dmv_scripts.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Panel config collection entry",
+  "properties": {
+    "panel_details":{
+      "type":"object",
+      "properties": {
+        "ip":{
+          "type":"string",
+          "description": "Ip address of the skaarhoj panel"
+        },
+        "port":{
+          "type":"number",
+          "description": "Port number of the skaarhoj panel"
+        }
+      },
+      "description": "Panel informations of the skaarhoj panel",
+      "required": ["ip","port"]
+    },
+    "ppkm_collection":{
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "avpIp":{
+            "type":"string",
+            "description": "Specifies the ip address of the machine"
+          },
+          "sourceCollection":{
+            "items":{
+              "$ref":"#/definitions/PROGRAM_PREVIEW_KEYER_MIXER_SET"
+            },
+            "type":"array",
+            "description": "Container for program & preview bus buttons"
+          },
+          "keyerCollection":{
+            "items":{
+              "$ref":"#/definitions/PROGRAM_PREVIEW_KEYER_MIXER_SET"
+            },
+            "type":"array",
+            "description": "Container for keyer bus buttons"
+          },
+          "mixerConfigCollection":{
+            "items":{
+              "$ref":"#/definitions/MIXER_CONFIG_ENTRY"
+            },
+            "type":"array",
+            "description": "Container for config of mixer"
+          }
+        },
+        "required": ["avpIp","sourceCollection","keyerCollection","mixerConfigCollection"],
+        "type": "object"
+      },
+      "type": "array",
+      "description": "Collection of panel config"
+    }
+  },
+  "definitions": {
+    "PROGRAM_PREVIEW_KEYER_MIXER_SET":{
+      "type":"object",
+      "$id":"#/definitions/PROGRAM_PREVIEW_KEYER_MIXER_SET",
+      "additionalProperties": true,
+      "properties": {
+        "name":{
+          "type":"string",
+          "description": "Set name in display. If not set it will take the essence type and number to be displayed"
+        },
+        "isBlank":{
+          "type":"boolean",
+          "description": "Sets the button blank."
+        },
+        "pos":{
+          "type":"object",
+          "properties": {
+            "row":{
+              "type":"number",
+              "description": "Sets the button on the panel"
+            },
+            "shiftRow":{
+              "type":"boolean",
+              "description": "Not implemented yet. To have the ability of shifting the row."
+            }
+          },
+          "required":["row","shiftRow"],
+          "description": "Sets the button on the panel"
+        },
+        "videoEssence":{
+          "type":"object",
+          "properties": {
+            "type":{
+              "type":"string",
+              "enum":["delay_player","video_signal_generator","sdi","video_mixer","rtp_receiver"],
+              "description":"Delay player / Video signal generator / Sdi / Video mixer / Rtp receiver "
+            },
+            "index":{
+              "type":"number",
+              "description": "The index of the video essence."
+            }
+          },
+          "required":["type","index"],
+          "description": "Video essence ..."
+        }
+      },
+      "required": ["name","isBlank","pos","videoEssence"]
+    },
+    "MIXER_CONFIG_ENTRY":{
+      "type":"object",
+      "$id":"#/definitions/MIXER_CONFIG_ENTRY",
+      "properties": {
+        "name":{
+          "type":"string",
+          "description": "Desired name will be shown on display"
+        },
+        "index":{
+          "type":"number",
+          "description": "Video mixer index number"
+        },
+        "mode":{
+          "type":"string",
+          "enum":["MIXER","MIXER_INDEPENDENT","LUMA_KEYER","LUMA_KEYER_ADDITIVE"],
+          "description": "MIXER / MIXER_INDEPENDENT / LUMA_KEYER / LUMA_KEYER_ADDITIVE"
+        },
+        "belongingIndex":{
+          "type":["null","number"],
+          "description": "Only if mode is set to LUMA_KEYER. Either null or an index number of a mixer"
+        },
+        "cascadingIndex":{
+          "type":["null","number"],
+          "description": "Only if mode is set to LUMA_KEYER. Needed to conifgure the cascadation of the BGND with all levels for the luma keyer. For cascading many different luma keyer levels. Either null or an index number of a mixer"
+        }
+      },
+      "required": ["name","index","mode","belongingIndex","cascadingIndex"],
+      "description": ""
+    }
+  }
+}
