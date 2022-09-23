@@ -55,14 +55,17 @@ Examples:
 
 Inside the config.json you have a two main objects the panel_details and ppkm_collection. The panel details is used to build up the connection to the desired skaarhoj panel with its ip and port number. 
 The main part of the config.json is the ppkm_collection, which stands for program preview keyer mixer collection. It is an array which holds different at300 configs inside. This means you are able to control many different at300 blades with only one Skaarhoj panel. In one ppkm_collection entry you need to set the common properties:
+```
   ppkm_collection_entry = {
   -avpIp
   -sourceCollection 
   -keyeCollection
   -mixerConfiguration
   }
+```
 
 The avpIp is the ip adress of the at300 which should be controlled. The sourceCollection & keyeCollection entries are just video essences from the at300 in a form to be seen on the panel. The following properties must be set for them
+```
   sourceCollection | keyeCollection = {
     name:"";
     pos: { 
@@ -74,9 +77,12 @@ The avpIp is the ip adress of the at300 which should be controlled. The sourceCo
       index:number
     }
   }
+  ```
+  
 The sourceCollection is needed to map the program and preview bus buttons. The keyerCollection is needed for the keyer fill & signal bus row. If you let the property name:"" then it will automatically display the video essence information on the display.
 
 The mixerConfiguration is needed to setup the needed mixer in the at300 blade. Following properties need to be set:
+```
   mixerConfiguration = {
     name:string;
     index:number;
@@ -84,9 +90,10 @@ The mixerConfiguration is needed to setup the needed mixer in the at300 blade. F
     belongingIndex: null | number;
     cascadingIndex: null | number
   }
-If you let the property name:"" it will automatically write `Mixer ${index}` inside the mixer display. You can choose between different modes, like listed before. The belongingIndex and cascadingIndex is normally set to null if you are using MIXER or MIXER_INDEPENDENT mode. 
+  ```
+If you let the property `name:""` it will automatically write `Mixer ${index}` inside the mixer display. You can choose between different modes, like listed before. The belongingIndex and cascadingIndex is normally set to null if you are using MIXER or MIXER_INDEPENDENT mode. 
 But if you want to use the LUMA mode, then you have to specify the selected Luma mixer belongingIndex and cascadingIndex. The belongingIndex is need to properly show the right program and preview bus of the BGND mixer which is going to be used as the base level. The cascadingIndex is needed to cascade the different Luma keyer levels on each selcted LUMA_KEYER. e.g:
-
+```
   "mixerConfigCollection": [
       {"name": "BGND","index":0 ,"mode": "MIXER","belongingIndex": null,"cascadingIndex": null},
       {"name": "LUMA 1","index":1 ,"mode": "LUMA_KEYER","belongingIndex": 0,"cascadingIndex": 0},
@@ -97,8 +104,9 @@ But if you want to use the LUMA mode, then you have to specify the selected Luma
       {"name": "","index":6 ,"mode": "MIXER","belongingIndex": null,"cascadingIndex": null},
       {"name": "","index":7 ,"mode": "MIXER","belongingIndex": null,"cascadingIndex": null}
     ]
-In this example you can see the first entry is used as the base layer BGND the belongingIndex and cascadingIndex is set to null. The next common 3 mixer configurations is set to LUMA_KEYER mode which all have the belongingIndex:0. This entry is needed to show the correct program and preview bus when the current LUMA_KEYER is selected. The cascadingIndex is set sequentally counting up from 0 to 2, to put the one LUMA_KEYER layer above the next, to get the final result of an mixer with 3 LUMA_KEYER levels on top of it. 
-All the other mixer configurations are in default MIXER mode.
+```
+In this example you can see the first entry is used as the base layer BGND the `belongingIndex` and `cascadingIndex` is set to `null`. The next common 3 mixer configurations is set to `LUMA_KEYER` mode which all have the `belongingIndex:0`. This entry is needed to show the correct program and preview bus when the current `LUMA_KEYER` is selected. The `cascadingIndex` is set sequentally counting up from 0 to 2, to put the one `LUMA_KEYER` layer above the next, to get the final result of an mixer with 3 `LUMA_KEYER` levels on top of it. 
+All the other mixer configurations are in default `MIXER` mode.
 
 
 ## Execution
