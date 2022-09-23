@@ -1,11 +1,11 @@
-README
+# README
 
-##Introduction
+## Introduction
 
 This project is build to control at300 blades in avp mode with a Skaarhoj panel and do basic video mixing stuff.
 
 
-##Dependencies
+## Dependencies
 
 To compile and run the scripts you will need at least the following software versions: -typescript 4.7.4 -vscript & vapi from at300 with version at least 2.1.81
 
@@ -16,9 +16,9 @@ System manager    v0.1.27 (2f0e1d67)
 (default credentials for Skaarhoj panel login: admin pw:skaarhoj)
 
 
-##Installation
+## Installation
 
-1. Go into the "PANEL_CONFIG" directory and execute: `./install.sh <ip-address>`: 
+1. Go into the "panel-config" directory and execute: `./install.sh <ip-address>`: 
   - The provided IP address should match your at300 machine
   - The script will write this machines IP address into the package.json file for the installation of vapi and vscript packages
   - The script installs:
@@ -29,7 +29,7 @@ System manager    v0.1.27 (2f0e1d67)
     5. ajv to validate schema json
     6. ts-node to run the .ts files without the need to compile them first in .js files 
 
-##Configuration
+## Configuration
 
 The configuration for your environment is defined in the "config.json" file. You can edit the file itself and will be warned on errors while you type if your editor supports json schemas (e.g. VS Code). You can also load another configuration by setting the relative path to the configuration file as an argument on executing either the .ts scripts or the all_in_one.sh.
 
@@ -51,7 +51,7 @@ Examples:
 > Note: You can use relative and absolute paths and you can also work with links in your file system
 
 
-##How to setup config.json
+## How to setup config.json
 
 Inside the config.json you have a two main objects the panel_details and ppkm_collection. The panel details is used to build up the connection to the desired skaarhoj panel with its ip and port number. 
 The main part of the config.json is the ppkm_collection, which stands for program preview keyer mixer collection. It is an array which holds different at300 configs inside. This means you are able to control many different at300 blades with only one Skaarhoj panel. In one ppkm_collection entry you need to set the common properties:
@@ -101,9 +101,11 @@ In this example you can see the first entry is used as the base layer BGND the b
 All the other mixer configurations are in default MIXER mode.
 
 
-##Execution
+## Execution
+
 Compile and run all scripts in the `panelConfig` directory with `./start_panel.sh <path-to-custom-config-json(optional)>`
 
-##Contact
+## Contact
+
 Feel free to contact Jalil Ariubi from arkona technologies GmbH for further suggestions bug reports or help to setup the config file. 
 <j.ariubi@arkona-technologies.de>
