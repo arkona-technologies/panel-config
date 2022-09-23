@@ -7,4 +7,3 @@ apt-get install nodejs -y
 npm i -g n && n latest && printf "Updated npm\n"
 npm i -g typescript ts-node && printf "Installed typescript globally\n"
 npm i http://"$MACHINE"/vapi.tar.gz http://"$MACHINE"/vscript.tar.gz && npm i && printf "Installed local dependencies\n"
-npm i
