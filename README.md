@@ -112,8 +112,3 @@ All the other mixer configurations are in default `MIXER` mode.
 ## Execution
 
 Compile and run all scripts in the `panelConfig` directory with `./start_panel.sh <path-to-custom-config-json(optional)>`
-
-## Contact
-
-Feel free to contact Jalil Ariubi from arkona technologies GmbH for further suggestions bug reports or help to setup the config file. 
-<j.ariubi@arkona-technologies.de>
