@@ -2,24 +2,29 @@
 
 ## Introduction
 
-This project is build to control at300 blades in avp mode with a Skaarhoj panel and do basic video mixing stuff.
+This project provides scripts to easily configure AT300 processing blades running the AVP software image to function as a vision mixer controllable by a Skaarhoj Airfly Pro v3.
 
 
 ## Dependencies
 
-To compile and run the scripts you will need at least the following software versions: -typescript 4.7.4 -vscript & vapi from at300 with version at least 2.1.81
+To compile and run these scripts you will need the following software: 
+- typescript 4.7.4 
+- vscript & vapi (obtainable from an at300 running version 2.1.81 or higher)
+
 
 The used Skaarhoj panel is an airflyprov3 with specs as listed:
+```
 Operating system  0.14-pre1
 Device type       controller-airflyprov3
 System manager    v0.1.27 (2f0e1d67)
 (default credentials for Skaarhoj panel login: admin pw:skaarhoj)
+```
 
 
 ## Installation
 
-1. Go into the "panel-config" directory and execute: `./install.sh <ip-address>`: 
-  - The provided IP address should match your at300 machine
+1. Go into the "panel-config" directory and run: `./install.sh <ip-address>`: 
+  - The provided IP address should match that of your at300 machine
   - The script will write this machines IP address into the package.json file for the installation of vapi and vscript packages
   - The script installs:
     1. The latest versions of nodejs, npm
@@ -91,8 +96,8 @@ The mixerConfiguration is needed to setup the needed mixer in the at300 blade. F
     cascadingIndex: null | number
   }
   ```
-If you let the property `name:""` it will automatically write `Mixer ${index}` inside the mixer display. You can choose between different modes, like listed before. The belongingIndex and cascadingIndex is normally set to null if you are using MIXER or MIXER_INDEPENDENT mode. 
-But if you want to use the LUMA mode, then you have to specify the selected Luma mixer belongingIndex and cascadingIndex. The belongingIndex is need to properly show the right program and preview bus of the BGND mixer which is going to be used as the base level. The cascadingIndex is needed to cascade the different Luma keyer levels on each selcted LUMA_KEYER. e.g:
+If you leave the property `name:` blank it will automatically write `Mixer ${index}` inside the mixer display. You may choose between different modes, as listed before. The belongingIndex and cascadingIndex is normally set to null if you are using *MIXER* or *MIXER_INDEPENDENT* mode. 
+But if you want to use the *LUMA* mode, then you have to specify the selected Luma mixer belongingIndex and cascadingIndex. The belongingIndex is need to properly show the right program and preview bus of the BGND mixer which is going to be used as the base level. The cascadingIndex is needed to cascade the different Luma keyer levels on each selcted *LUMA_KEYER*. e.g:
 ```
   "mixerConfigCollection": [
       {"name": "BGND","index":0 ,"mode": "MIXER","belongingIndex": null,"cascadingIndex": null},
