@@ -124,4 +124,4 @@ Compile and run all scripts in the `panelConfig` directory with `./start_panel.s
 To find more information on the panel used as well as documenation of its API, please visit the [skaarhoj website](https://www.skaarhoj.com/).
 Additionally you might want to take a look at [this repository](https://github.com/SKAARHOJ/Support/blob/master/Manuals/SKAARHOJ/SKAARHOJ_RawPanel_V2.pdf).
 
-For questions, suggestions or business inquiries please visit https://arkonatech.com/ or contact <mailto:contact@arkonatech.com>.
+For questions, suggestions or business inquiries please visit https://arkonatech.com/ or contact contact@arkonatech.com
