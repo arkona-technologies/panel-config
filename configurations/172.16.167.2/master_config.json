@@ -1,0 +1,176 @@
+{
+  "$schema": "./types/schema.json",
+  "panel_ip": "172.16.39.108",
+  "panel_model": "SK_MASTERKEYONE",
+  "panel_port": 9923,
+  "machine_ip": "172.16.167.2",
+  "panel_layout": {
+    "meLevel": [
+      {
+        "mixerElements": [
+          {
+            "buttonIndex": 0,
+            "index": 0,
+            "rootMixerIndex": 0,
+            "name": "Mixer 0"
+          },
+          {
+            "buttonIndex": 1,
+            "index": 1,
+            "rootMixerIndex": 1,
+            "name": "Mixer 1"
+          }
+        ],
+        "xbarElements": [
+          {
+            "buttonIndex": 0,
+            "essenceIndex": 0,
+            "essenceType": "color_correction",
+            "name": "Cam 1"
+          },
+          {
+            "buttonIndex": 1,
+            "essenceIndex": 1,
+            "essenceType": "color_correction",
+            "name": "Cam 2"
+          },
+          {
+            "buttonIndex": 2,
+            "essenceIndex": 2,
+            "essenceType": "color_correction",
+            "name": "Cam 3"
+          },
+          {
+            "buttonIndex": 3,
+            "essenceIndex": 3,
+            "essenceType": "color_correction",
+            "name": "Schalter"
+          },
+          {
+            "buttonIndex": 4,
+            "essenceIndex": 4,
+            "essenceType": "color_correction",
+            "name": "Presentation"
+          },
+          {
+            "buttonIndex": 5,
+            "essenceIndex": 5,
+            "essenceType": "color_correction",
+            "name": "Clips"
+          }
+        ],
+        "keyerElements": []
+      },
+      {
+        "mixerElements": [
+          {
+            "buttonIndex": 0,
+            "index": 0,
+            "rootMixerIndex": 0,
+            "name": "Mixer 0"
+          },
+          {
+            "buttonIndex": 1,
+            "index": 1,
+            "rootMixerIndex": 1,
+            "name": "Mixer 1"
+          }
+        ],
+        "xbarElements": [
+          {
+            "buttonIndex": 0,
+            "essenceIndex": 0,
+            "essenceType": "color_correction",
+            "name": "Cam 1"
+          },
+          {
+            "buttonIndex": 1,
+            "essenceIndex": 1,
+            "essenceType": "color_correction",
+            "name": "Cam 2"
+          },
+          {
+            "buttonIndex": 2,
+            "essenceIndex": 2,
+            "essenceType": "color_correction",
+            "name": "Cam 3"
+          },
+          {
+            "buttonIndex": 3,
+            "essenceIndex": 3,
+            "essenceType": "color_correction",
+            "name": "Schalter"
+          },
+          {
+            "buttonIndex": 4,
+            "essenceIndex": 4,
+            "essenceType": "color_correction",
+            "name": "Presentation"
+          },
+          {
+            "buttonIndex": 5,
+            "essenceIndex": 5,
+            "essenceType": "color_correction",
+            "name": "Clips"
+          }
+        ],
+        "keyerElements": []
+      },
+      {
+        "mixerElements": [
+          {
+            "buttonIndex": 0,
+            "index": 0,
+            "rootMixerIndex": 0,
+            "name": "Mixer 0"
+          },
+          {
+            "buttonIndex": 1,
+            "index": 1,
+            "rootMixerIndex": 1,
+            "name": "Mixer 1"
+          }
+        ],
+        "xbarElements": [
+          {
+            "buttonIndex": 0,
+            "essenceIndex": 0,
+            "essenceType": "color_correction",
+            "name": "Cam 1"
+          },
+          {
+            "buttonIndex": 1,
+            "essenceIndex": 1,
+            "essenceType": "color_correction",
+            "name": "Cam 2"
+          },
+          {
+            "buttonIndex": 2,
+            "essenceIndex": 2,
+            "essenceType": "color_correction",
+            "name": "Cam 3"
+          },
+          {
+            "buttonIndex": 3,
+            "essenceIndex": 3,
+            "essenceType": "color_correction",
+            "name": "Schalter"
+          },
+          {
+            "buttonIndex": 4,
+            "essenceIndex": 4,
+            "essenceType": "color_correction",
+            "name": "Presentation"
+          },
+          {
+            "buttonIndex": 5,
+            "essenceIndex": 5,
+            "essenceType": "color_correction",
+            "name": "Clips"
+          }
+        ],
+        "keyerElements": []
+      }
+    ]
+  }
+}
