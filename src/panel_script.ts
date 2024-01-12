@@ -10,17 +10,17 @@ import { PANEL_CHECK_ALIVE_INTERVAL, PANEL_CHECK_REVIVE_INTERVAL } from './utils
 
 const main = async () => {
   //SECTION NEW SHIT
-  const { machine_ip, panel_ip, panel_layout, panel_port, panel_model } = CONFIGURATION;
+  const {  machine_url, panel_ip, panel_layout, panel_port, panel_model } = CONFIGURATION;
 
   // const client = await createClient({ host: panel_ip, port: panel_port });
 
-  const avp = await connectMachine(machine_ip);
-  if (avp == null) throw new Error(`Error: Can not connect to ${machine_ip}`);
+  const avp = await connectMachine(new URL(machine_url));
+  if (avp == null) throw new Error(`Error: Can not connect to ${machine_url}`);
 
   // let panel = new PanelClass(client, avp, panel_layout, panel_model);
 
   let panel = new PanelClass(panel_ip, panel_port, avp, panel_layout, panel_model);
-  console.log('panel %s %d avp %s', panel_ip, panel_port, machine_ip);
+  console.log('panel %s %d avp %s', panel_ip, panel_port, machine_url);
 
   await panel.handling_data();
   await pause(PANEL_CHECK_ALIVE_INTERVAL);

@@ -12,7 +12,7 @@ export type PROGRAM_PRESET_ENTRY = {
 export type Configuration = {
   panel_ip: string;
   panel_port: number;
-  machine_ip: string;
+  machine_url: string;
   panel_layout: PANEL_LAYOUT;
   panel_model: SK_MODEL;
 };

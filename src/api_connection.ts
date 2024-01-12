@@ -11,20 +11,23 @@ import {
 import { enforce_nonnull } from "vscript";
 
 // SECTION NEW
-export async function connectMachine(ip: string) {
+export async function connectMachine(url: URL) {
   try {
-    // TODO login credentials
     const vm = await VAPI.VM.open({
-      ip: ip,
+      ip: url.host,
       towel: "",
-      login: {
-        user: "",
-        password: "",
-      },
+      protocol:
+        url.protocol.startsWith("wss") || url.protocol.startsWith("https")
+          ? "wss"
+          : "ws",
+      login:
+        !!url.username && !!url.password
+          ? { user: url.username, password: url.password }
+          : null,
     });
     return vm;
   } catch {
-    console.log(`Error: Could not connect to ${ip}!`);
+    console.log(`Error: Could not connect to ${url.toString()}!`);
     return null;
   }
 }
