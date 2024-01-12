@@ -108,7 +108,7 @@ export async function initAvpMachine(
   ppSet: PROGRAM_PREVIEW_KEYER_MIXER_SET
 ) {
   const { mixerConfigCollection } = ppSet;
-  const AVP = await connectMachine(ip);
+  const AVP = await connectMachine(new URL(ip));
 
   let panelConfig: PANEL_CONFIG = {
     avp_info: {
