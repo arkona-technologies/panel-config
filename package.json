@@ -5,7 +5,7 @@
   "description": "App to control Panel & AT300",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf node_modules && rm package-lock.json"
+    "clean": "rm -rf node_modules && rm package-lock.json && rm -rf ./.dist"
   },
   "author": "",
   "license": "ISC",

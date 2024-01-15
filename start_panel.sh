@@ -6,4 +6,4 @@ if [ -z "$CONFIGPATH" ]; then
   exit 1
 fi
 tsc -p tsconfig.json
-node .dist/panel_script.js "$CONFIGPATH"
+node build/panel_script.js "$CONFIGPATH"
