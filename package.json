@@ -4,18 +4,16 @@
   "version": "1.0.0",
   "description": "App to control Panel & AT300",
   "main": "index.js",
-  "scripts": {
-    "clean": "rm -rf node_modules && rm package-lock.json && rm -rf ./.dist"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ajv": "^8.11.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.7",
-    "vapi": "http://172.16.210.107/vapi.tar.gz",
-    "vscript": "http://172.16.210.107/vscript.tar.gz",
-    "vutil": "http://172.16.210.107/vutil.tar.gz"
+    "typescript": "^4.7.4",
+    "vapi": "http://172.16.30.12/vapi.tar.gz",
+    "vscript": "http://172.16.30.12/vscript.tar.gz",
+    "vutil": "http://172.16.30.12/vutil.tar.gz"
   },
   "devDependencies": {
     "@types/ws": "^8.5.10"

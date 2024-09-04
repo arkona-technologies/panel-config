@@ -1,9 +1,9 @@
-import { AT1101, AT1130, VideoMixer } from "vapi";
-import { VSocket } from "vscript";
-import { SK_MODEL } from "./key_collection/key_collection";
+import { AT1101, AT1130, VideoMixer } from 'vapi';
+import { VSocket } from 'vscript';
+import { SK_MODEL } from './key_collection/key_collection';
 
 //SECTION NEW SHIT
-export type ENCODER_TYPE = "CLIP" | "GAIN";
+export type ENCODER_TYPE = 'CLIP' | 'GAIN';
 export type PROGRAM_PRESET_ENTRY = {
   program_entry: ESSENCE_ENTRY | null;
   preset_entry: ESSENCE_ENTRY | null;
@@ -12,7 +12,7 @@ export type PROGRAM_PRESET_ENTRY = {
 export type Configuration = {
   panel_ip: string;
   panel_port: number;
-  machine_url: string;
+  machine_ip: string;
   panel_layout: PANEL_LAYOUT;
   panel_model: SK_MODEL;
 };
@@ -75,10 +75,7 @@ export declare type ESSENCE_ENTRY = {
   essenceIndex: number;
 };
 
-export declare type VIDEO_ESSENCE =
-  | AT1130.Video.Essence
-  | AT1101.Video.Essence
-  | null;
+export declare type VIDEO_ESSENCE = AT1130.Video.Essence | AT1101.Video.Essence | null;
 
 export declare type SrcInformation = {
   buttonIndex: number;
@@ -89,35 +86,32 @@ export declare type SrcInformation = {
   essenceType: ESSENCE_TYPES;
 };
 
-export declare type COLOR_MODE = "Shuffled" | "White" | "Random" | "Red";
+export declare type COLOR_MODE = 'Shuffled' | 'White' | 'Random' | 'Red';
 
 export declare type COLOR_CODE = {
   name: string;
   colorCode: string;
 };
 
-export declare type SCALE_TYPE =
-  | "STRENGTH_BAR"
-  | "CENTERED_MARKER"
-  | "CENTERED_BAR";
+export declare type SCALE_TYPE = 'STRENGTH_BAR' | 'CENTERED_MARKER' | 'CENTERED_BAR';
 export declare type SCALE_TYPE_ENTRY = {
   name: SCALE_TYPE;
   value: number;
 };
 
 export declare type FORMAT_NAME =
-  | "Integer"
-  | "Float32"
-  | "Percent"
-  | "dB"
-  | "Frames"
-  | "1/X"
-  | "Kelvin"
-  | "Hidden"
-  | "Float33"
-  | "Float22"
-  | "Text1"
-  | "Text2";
+  | 'Integer'
+  | 'Float32'
+  | 'Percent'
+  | 'dB'
+  | 'Frames'
+  | '1/X'
+  | 'Kelvin'
+  | 'Hidden'
+  | 'Float33'
+  | 'Float22'
+  | 'Text1'
+  | 'Text2';
 
 export declare type FORMAT_ENTRY = {
   name: FORMAT_NAME;
@@ -137,22 +131,22 @@ export declare type PANEL_DETAILS = {
 };
 
 export declare type ESSENCE_TYPES =
-  | "video_mixer"
-  | "video_signal_generator"
-  | "r_t_p_receiver"
-  | "N/A"
-  | "sdi"
-  | "re_play"
-  | "delay"
-  | "player"
-  | "cc3d"
-  | "cc1d";
+  | 'color_correction'
+  | 'video_mixer'
+  | 'video_signal_generator'
+  | 're_play'
+  | 'r_t_p_receiver'
+  | 'N/A'
+  | 'sdi'
+  | 'i_o_module'
+  | 'cc1d'
+  | 'cc3d'
+  | 'delay_player'
+  | 'video_player';
 
-export type ROUTE_OUTPUT_TYPE = "sdi_output" | "live_view" | "rtp_tx";
+export type ROUTE_OUTPUT_TYPE = 'sdi_output' | 'live_view' | 'rtp_tx';
 
-export declare type OLD_VIDEO_ESSENCE =
-  | AT1130.Video.Essence
-  | AT1101.Video.Essence;
+export declare type OLD_VIDEO_ESSENCE = AT1130.Video.Essence | AT1101.Video.Essence;
 
 export declare type OLD_ESSENCE_ENTRY = {
   type: ESSENCE_TYPES;
@@ -172,56 +166,53 @@ export declare type OLD_COLOR_CODE = {
   colorCode: string;
 };
 
-export declare type OLD_SCALE_TYPE =
-  | "STRENGTH_BAR"
-  | "CENTERED_MARKER"
-  | "CENTERED_BAR";
+export declare type OLD_SCALE_TYPE = 'STRENGTH_BAR' | 'CENTERED_MARKER' | 'CENTERED_BAR';
 export declare type OLD_SCALE_TYPE_ENTRY = {
   name: OLD_SCALE_TYPE;
   value: number;
 };
 
 export declare type OLD_FORMAT_NAME =
-  | "Integer"
-  | "Float32"
-  | "Percent"
-  | "dB"
-  | "Frames"
-  | "1/X"
-  | "Kelvin"
-  | "Hidden"
-  | "Float33"
-  | "Float22"
-  | "Text1"
-  | "Text2";
+  | 'Integer'
+  | 'Float32'
+  | 'Percent'
+  | 'dB'
+  | 'Frames'
+  | '1/X'
+  | 'Kelvin'
+  | 'Hidden'
+  | 'Float33'
+  | 'Float22'
+  | 'Text1'
+  | 'Text2';
 
 export declare type OLD_FORMAT_ENTRY = {
   name: OLD_FORMAT_NAME;
   value: number;
 };
 
-export declare type HWC_Types = "B" | "B4" | "Tbar" | "Enc" | "J" | "D" | "";
+export declare type HWC_Types = 'B' | 'B4' | 'Tbar' | 'Enc' | 'J' | 'D' | '';
 
 export declare type KEY_GROUPS =
-  | "mixer"
-  | "keyer"
-  | "program"
-  | "preset"
-  | "stay_blinking"
-  | "encoder"
-  | "slider"
-  | "slider_display"
-  | "status_display"
-  | "vm_display"
-  | "me_display"
-  | "display"
-  | "cut"
-  | "route_out"
-  | "route_in"
-  | "auto"
-  | "shift"
-  | "ftb"
-  | "none";
+  | 'mixer'
+  | 'keyer'
+  | 'program'
+  | 'preset'
+  | 'stay_blinking'
+  | 'encoder'
+  | 'slider'
+  | 'slider_display'
+  | 'status_display'
+  | 'vm_display'
+  | 'me_display'
+  | 'display'
+  | 'cut'
+  | 'route_out'
+  | 'route_in'
+  | 'auto'
+  | 'shift'
+  | 'ftb'
+  | 'none';
 
 export declare type KEY_ALIAS = {
   alias: string;
@@ -249,7 +240,7 @@ export declare type MIXER_CONFIG_ENTRY = {
 //SECTION API_CONNECTION
 export declare type VIDEO_MIXER_BSLK_MODE = VideoMixer.BSLKMode;
 
-export declare type FTB_MODE = "ON" | "OFF";
+export declare type FTB_MODE = 'ON' | 'OFF';
 
 export declare type VIDEO_MIXER_ENTRY = {
   name: string;
@@ -265,7 +256,7 @@ export declare type VIDEO_MIXER_ENTRY = {
   faderValue: number;
 };
 
-export type FADER_DIRECTION = "UP" | "DOWN" | "NEUTRAL"; //null maybe
+export type FADER_DIRECTION = 'UP' | 'DOWN' | 'NEUTRAL'; //null maybe
 
 export declare type AVP_INFO = {
   ip: string;
@@ -274,7 +265,7 @@ export declare type AVP_INFO = {
   isSelected: boolean;
 };
 
-declare type FADER_DIRECTION_0 = "UP" | "DOWN" | null;
+declare type FADER_DIRECTION_0 = 'UP' | 'DOWN' | null;
 
 export declare type PANEL_CONFIG = {
   avp_info: AVP_INFO;
@@ -287,7 +278,7 @@ export declare type PANEL_CONFIG = {
 };
 
 //FOR THE JSON FILE
-export declare type PROGRAM_PREVIEW_BUS_TYPE = "SINGLE_ROW" | "DOUBLE_ROW";
+export declare type PROGRAM_PREVIEW_BUS_TYPE = 'SINGLE_ROW' | 'DOUBLE_ROW';
 export declare type PROGRAM_PREVIEW_KEYER_MIXER_SET = {
   avpIp: string;
   // busType: PROGRAM_PREVIEW_BUS_TYPE,
@@ -318,16 +309,16 @@ export declare type PLACED_BUTTON_POSITIONING_ENTRY = {
 };
 
 export declare type BUTTON_STATUS =
-  | "On"
-  | "Off"
-  | "Dimmed"
-  | "BlinkingRed"
-  | "BlinkingRedQuick"
-  | "Blinking"
-  | "BlinkingQuick"
-  | "BlinkingWhite"
-  | "BlinkingWhiteQuick";
+  | 'On'
+  | 'Off'
+  | 'Dimmed'
+  | 'BlinkingRed'
+  | 'BlinkingRedQuick'
+  | 'Blinking'
+  | 'BlinkingQuick'
+  | 'BlinkingWhite'
+  | 'BlinkingWhiteQuick';
 
-export declare type OLD_COLOR_MODE = "Shuffled" | "White" | "Random" | "Red";
+export declare type OLD_COLOR_MODE = 'Shuffled' | 'White' | 'Random' | 'Red';
 
-export declare type SET_KEYER_MODE = "fill" | "signal" | "empty";
+export declare type SET_KEYER_MODE = 'fill' | 'signal' | 'empty';

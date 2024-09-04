@@ -224,13 +224,13 @@ Every **meLevel** can have their **own xbarElements**, thats why you need to spe
 		{
 			"buttonIndex": 1,
 			"essenceIndex": 1,
-			"essenceType": "cc1d",
+			"essenceType": "color_correction",
 			"name": "Drums"
 		},
 		{
 			"buttonIndex": 2,
 			"essenceIndex": 2,
-			"essenceType": "delay",
+			"essenceType": "re_play",
 			"name": "Golf"
 		},
 	]
@@ -243,19 +243,11 @@ With **essenceType** and **essenceIndex** you specify which video essence type y
 
 Current **essenceTypes** are supported:
 
-- 'video_mixer'
-- 'video_signal_generator'
-- 'r_t_p_receiver'
-- 'N/A'
-- 'sdi'
-- 'delay'
-- 'player'
-- 'cc3d'
-- 'cc1d';
-
-### Route sources
-
-Explanation for routing sources. Coming soon...
+- video_mixer
+- r_t_p_receiver
+- re_play (delay_player)
+- color_correction
+- video_signal_generator
 
 ### KeyerElements
 

@@ -1,35 +1,23 @@
-import { VM } from "vapi";
-import { Socket } from "net";
-import { Duration, enforce_nonnull, pause } from "vscript";
-import {
-  ENCODER_TYPE,
-  KEY_ALIAS,
-  ME_LEVEL,
-  PANEL_LAYOUT,
-} from "../utils/types.js";
-import {
-  SK_MODEL,
-  get_key_collection,
-} from "../utils/key_collection/key_collection.js";
-import { XbarClass } from "./XbarClass.js";
-import { KeyerClass } from "./KeyerClass.js";
-import { CutClass } from "./CutClass.js";
-import { AutoClass } from "./AutoClass.js";
-import { SliderClass } from "./SliderClass.js";
-import { EncoderClass } from "./EncoderClass.js";
-import { ShiftClass } from "./ShiftClass.js";
-import { MixerClass } from "./MixerClass.js";
-import { PanelElementClass } from "./PanelElementClass.js";
-import {
-  hardResetPanel,
-  resetPanel,
-  set_no_connection_mode,
-} from "../utils/hwc_utils.js";
-import { DisplayStatusClass } from "./DisplayStatusClass.js";
-import { ip_slicer } from "../utils/panel_utils.js";
-import { VM_CHECK_ALIVE_INTERVAL } from "../utils/global.js";
-import { RouteOutClass } from "./RouteOutClass.js";
-import { RouteInClass } from "./RouteInClass.js";
+import { VM } from 'vapi';
+import { Socket } from 'net';
+import { Duration, enforce_nonnull, pause } from 'vscript';
+import { ENCODER_TYPE, KEY_ALIAS, ME_LEVEL, PANEL_LAYOUT } from '../utils/types.js';
+import { SK_MODEL, get_key_collection } from '../utils/key_collection/key_collection.js';
+import { XbarClass } from './XbarClass.js';
+import { KeyerClass } from './KeyerClass.js';
+import { CutClass } from './CutClass.js';
+import { AutoClass } from './AutoClass.js';
+import { SliderClass } from './SliderClass.js';
+import { EncoderClass } from './EncoderClass.js';
+import { ShiftClass } from './ShiftClass.js';
+import { MixerClass } from './MixerClass.js';
+import { PanelElementClass } from './PanelElementClass.js';
+import { hardResetPanel, resetPanel, set_no_connection_mode } from '../utils/hwc_utils.js';
+import { DisplayStatusClass } from './DisplayStatusClass.js';
+import { ip_slicer } from '../utils/panel_utils.js';
+import { VM_CHECK_ALIVE_INTERVAL } from '../utils/global.js';
+import { RouteOutClass } from './RouteOutClass.js';
+import { RouteInClass } from './RouteInClass.js';
 
 type panel_element =
   | MixerClass
@@ -90,7 +78,7 @@ export class PanelClass {
     panel_port: number,
     vm: VM.Any,
     panel_layout: PANEL_LAYOUT,
-    panel_model: SK_MODEL
+    panel_model: SK_MODEL,
   ) {
     // constructor(client: Socket, vm: VM.Any, panel_layout: PANEL_LAYOUT, panel_model: SK_MODEL) {
     this.panel_ip = panel_ip;
@@ -107,65 +95,43 @@ export class PanelClass {
     //default init of some buttons
     this.cutElement = new CutClass(
       this.socket,
-      parseInt(
-        enforce_nonnull(this.key_collection.find((el) => el.group === "cut"))
-          .code
-      ),
-      this.panel_model
+      parseInt(enforce_nonnull(this.key_collection.find((el) => el.group === 'cut')).code),
+      this.panel_model,
     );
     this.autoElement = new AutoClass(
       this.socket,
-      parseInt(
-        enforce_nonnull(this.key_collection.find((el) => el.group === "auto"))
-          .code
-      ),
-      this.panel_model
+      parseInt(enforce_nonnull(this.key_collection.find((el) => el.group === 'auto')).code),
+      this.panel_model,
     );
     this.sliderElement = new SliderClass(
       this.socket,
+      parseInt(enforce_nonnull(this.key_collection.find((el) => el.group === 'slider')).code),
       parseInt(
-        enforce_nonnull(this.key_collection.find((el) => el.group === "slider"))
-          .code
+        enforce_nonnull(this.key_collection.find((el) => el.group === 'slider_display')).code,
       ),
-      parseInt(
-        enforce_nonnull(
-          this.key_collection.find((el) => el.group === "slider_display")
-        ).code
-      ),
-      this.panel_model
+      this.panel_model,
     );
     this.shiftElement = new ShiftClass(
       this.socket,
-      parseInt(
-        enforce_nonnull(this.key_collection.find((el) => el.group === "shift"))
-          .code
-      ),
-      this.panel_model
+      parseInt(enforce_nonnull(this.key_collection.find((el) => el.group === 'shift')).code),
+      this.panel_model,
     );
 
     this.vmStatusElement = new DisplayStatusClass(
       this.socket,
-      parseInt(
-        enforce_nonnull(
-          this.key_collection.find((el) => el.group === "vm_display")
-        ).code
-      ),
+      parseInt(enforce_nonnull(this.key_collection.find((el) => el.group === 'vm_display')).code),
       this.panel_model,
-      "vm_display",
-      "Disconnected",
-      `N/A`
+      'vm_display',
+      'Disconnected',
+      `N/A`,
     );
 
     this.meStatusElement = new DisplayStatusClass(
       this.socket,
-      parseInt(
-        enforce_nonnull(
-          this.key_collection.find((el) => el.group === "me_display")
-        ).code
-      ),
+      parseInt(enforce_nonnull(this.key_collection.find((el) => el.group === 'me_display')).code),
       this.panel_model,
-      "me_display",
-      `ME ${this.active_layout_index}`
+      'me_display',
+      `ME ${this.active_layout_index}`,
     );
   }
 
@@ -177,19 +143,19 @@ export class PanelClass {
     const client = new Socket();
 
     client.connect(this.panel_port, this.panel_ip, () => {
-      console.log("Connected to panel");
+      console.log('Connected to panel');
       client.write(`ping\n`);
       client.write(`SleepTimer=0\n`);
-      client.write("clear\n");
+      client.write('clear\n');
     });
 
-    client.on("close", async () => {
+    client.on('close', async () => {
       // console.log('Connection closed, attempting to reconnect...');
       //reconnection happens outside
     });
 
-    client.on("error", (err) => {
-      console.error("Socket error:", err);
+    client.on('error', (err) => {
+      console.error('Socket error:', err);
     });
     return client;
   }
@@ -205,14 +171,9 @@ export class PanelClass {
     this.mixerElementCollection = [];
     // this.keyerElementCollection = [];
 
-    let panel_pause = new Duration(
-      this.panel_model === "SK_AIRFLYPROV3" ? 0 : 0.1,
-      "s"
-    );
+    let panel_pause = new Duration(this.panel_model === 'SK_AIRFLYPROV3' ? 0 : 0.1, 's');
     resetPanel(this.socket, this.panel_model);
-    await pause(
-      new Duration(this.panel_model === "SK_AIRFLYPROV3" ? 0 : 1, "s")
-    );
+    await pause(new Duration(this.panel_model === 'SK_AIRFLYPROV3' ? 0 : 1, 's'));
     //set by json file
     await this.set_xbar_elements(panel_pause);
     await this.set_mixer_elements(panel_pause);
@@ -232,7 +193,7 @@ export class PanelClass {
       this.mixerElementCollection,
       this.xbarElementCollection,
       this.keyerElementCollection,
-      this.encoderElementCollection
+      this.encoderElementCollection,
     );
     if (findDefaultMixer != null) this.active_mixer_class = findDefaultMixer;
 
@@ -243,7 +204,7 @@ export class PanelClass {
     if (this.active_route_out_element != null) {
       await this.active_route_out_element.route_out_handler(
         this.routeOutElementCollection,
-        this.routeInElementCollection
+        this.routeInElementCollection,
       );
     }
   }
@@ -254,9 +215,7 @@ export class PanelClass {
     const { routeInElements } = current_layout;
     const vm = enforce_nonnull(this.vm);
     for (let el of routeInElements) {
-      this.routeInElementCollection.push(
-        new RouteInClass(this.socket, vm, el, this.panel_model)
-      );
+      this.routeInElementCollection.push(new RouteInClass(this.socket, vm, el, this.panel_model));
       await pause(pause_time);
     }
   }
@@ -267,9 +226,7 @@ export class PanelClass {
     const { routeOutElements } = current_layout;
     const vm = enforce_nonnull(this.vm);
     for (let el of routeOutElements) {
-      this.routeOutElementCollection.push(
-        new RouteOutClass(this.socket, vm, el, this.panel_model)
-      );
+      this.routeOutElementCollection.push(new RouteOutClass(this.socket, vm, el, this.panel_model));
       await pause(pause_time);
     }
   }
@@ -280,9 +237,7 @@ export class PanelClass {
     const { xbarElements } = current_layout;
     const vm = enforce_nonnull(this.vm);
     for (let el of xbarElements) {
-      this.xbarElementCollection.push(
-        new XbarClass(this.socket, vm, el, this.panel_model)
-      );
+      this.xbarElementCollection.push(new XbarClass(this.socket, vm, el, this.panel_model));
       await pause(pause_time);
     }
   }
@@ -292,9 +247,7 @@ export class PanelClass {
     const { keyerElements } = current_layout;
     const vm = enforce_nonnull(this.vm);
     for (let el of keyerElements) {
-      this.keyerElementCollection.push(
-        new KeyerClass(this.socket, vm, el, this.panel_model)
-      );
+      this.keyerElementCollection.push(new KeyerClass(this.socket, vm, el, this.panel_model));
       await pause(pause_time);
     }
   }
@@ -304,9 +257,7 @@ export class PanelClass {
     const { mixerElements } = current_layout;
     const vm = enforce_nonnull(this.vm);
     for (let el of mixerElements) {
-      this.mixerElementCollection.push(
-        new MixerClass(this.socket, vm, el, this.panel_model)
-      );
+      this.mixerElementCollection.push(new MixerClass(this.socket, vm, el, this.panel_model));
       await pause(pause_time);
     }
   }
@@ -314,102 +265,74 @@ export class PanelClass {
   async set_encoder_elements(pause_time: Duration) {
     //NOTE Quick hack for different encoders CLIP GAIN
     let encoders = this.key_collection.filter(
-      (el) =>
-        el.group === "encoder" && (el.alias === "CLIP" || el.alias === "GAIN")
+      (el) => el.group === 'encoder' && (el.alias === 'CLIP' || el.alias === 'GAIN'),
     );
 
     for (let el of encoders) {
       let encoder_type = el.alias as ENCODER_TYPE;
       this.encoderElementCollection.push(
-        new EncoderClass(
-          this.socket,
-          parseInt(el.code),
-          encoder_type,
-          this.panel_model
-        )
+        new EncoderClass(this.socket, parseInt(el.code), encoder_type, this.panel_model),
       );
       await pause(pause_time);
     }
   }
 
   async set_cut_element(pause_time: Duration) {
-    let { code } = enforce_nonnull(
-      this.key_collection.find((el) => el.group === "cut")
-    );
-    this.cutElement = new CutClass(
-      this.socket,
-      parseInt(code),
-      this.panel_model
-    );
+    let { code } = enforce_nonnull(this.key_collection.find((el) => el.group === 'cut'));
+    this.cutElement = new CutClass(this.socket, parseInt(code), this.panel_model);
     await pause(pause_time);
   }
 
   async set_auto_element(pause_time: Duration) {
-    let { code } = enforce_nonnull(
-      this.key_collection.find((el) => el.group === "auto")
-    );
-    this.autoElement = new AutoClass(
-      this.socket,
-      parseInt(code),
-      this.panel_model
-    );
+    let { code } = enforce_nonnull(this.key_collection.find((el) => el.group === 'auto'));
+    this.autoElement = new AutoClass(this.socket, parseInt(code), this.panel_model);
     await pause(pause_time);
   }
 
   async set_slider_element(pause_time: Duration) {
-    let slider = enforce_nonnull(
-      this.key_collection.find((el) => el.group === "slider")
-    );
-    let display = enforce_nonnull(
-      this.key_collection.find((el) => el.group === "slider_display")
-    );
+    let slider = enforce_nonnull(this.key_collection.find((el) => el.group === 'slider'));
+    let display = enforce_nonnull(this.key_collection.find((el) => el.group === 'slider_display'));
     this.sliderElement = new SliderClass(
       this.socket,
       parseInt(slider.code),
       parseInt(display.code),
-      this.panel_model
+      this.panel_model,
     );
     await pause(pause_time);
   }
 
   async set_shift_element(pause_time: Duration) {
-    let { code } = enforce_nonnull(
-      this.key_collection.find((el) => el.group === "shift")
-    );
-    this.shiftElement = new ShiftClass(
-      this.socket,
-      parseInt(code),
-      this.panel_model
-    );
+    let { code } = enforce_nonnull(this.key_collection.find((el) => el.group === 'shift'));
+    this.shiftElement = new ShiftClass(this.socket, parseInt(code), this.panel_model);
     await pause(pause_time);
   }
 
   async set_display_status_element(pause_time: Duration) {
     //vm_status
     const { code: vm_button_code } = enforce_nonnull(
-      this.key_collection.find((el) => el.group === "vm_display")
+      this.key_collection.find((el) => el.group === 'vm_display'),
     );
 
     this.vmStatusElement = new DisplayStatusClass(
       this.socket,
       parseInt(vm_button_code),
       this.panel_model,
-      "vm_display",
-      `${this.vm.raw.is_ready() ? "Connected" : "Disconnected"}`,
-      `${this.vm.raw.ip}`
+      'vm_display',
+      `${this.vm.raw.is_ready() ? 'Connected' : 'Disconnected'}`,
+      `${this.vm.raw.ip}`,
     );
     this.vmStatusElement.button_off();
 
     //me_status
     let { code: me_button_code } = enforce_nonnull(
-      this.key_collection.find((el) => el.group === "me_display")
+      this.key_collection.find((el) => el.group === 'me_display'),
     );
     this.meStatusElement = new DisplayStatusClass(
       this.socket,
       parseInt(me_button_code),
       this.panel_model,
-      "me_display",
-      `ME ${this.active_layout_index}`
+      'me_display',
+      `ME ${this.active_layout_index}`,
     );
     this.meStatusElement.button_off();
     await pause(pause_time);
@@ -456,7 +379,7 @@ export class PanelClass {
           | ShiftClass
           | EncoderClass
         )[]
-      | PanelElementClass[]
+      | PanelElementClass[],
   ) {
     let coll = collection as PanelElementClass[];
 
@@ -468,54 +391,49 @@ export class PanelClass {
   async switch_handler_down(entry: PanelElementClass) {
     const { button_key_code, key_group } = entry;
     switch (key_group) {
-      case "auto":
+      case 'auto':
         entry.button_on();
         if (this.active_mixer_class == null) return;
         this.autoElement.auto_handler(this.active_mixer_class);
         this.active_mixer_class.slider_check = false;
         break;
-      case "cut":
+      case 'cut':
         entry.button_on();
         if (this.active_mixer_class == null) return;
         this.cutElement.cut_handler(this.active_mixer_class);
         this.active_mixer_class.slider_check = false;
         break;
-      case "shift":
+      case 'shift':
         entry.button_on();
         // update status display
         this.active_layout_index = this.shiftElement.update_me_level(
           this.active_layout_index,
-          this.layout_collection.length
+          this.layout_collection.length,
         );
-        this.meStatusElement.set_display_text(
-          `ME ${this.active_layout_index}`,
-          true
-        );
+        this.meStatusElement.set_display_text(`ME ${this.active_layout_index}`, true);
         await this.init_keys();
 
         if (this.active_mixer_class == null) return;
         // await this.active_mixer_class.trigger_srcs();
         break;
-      case "mixer":
+      case 'mixer':
         let mixer_element = this.mixerElementCollection.find(
-          (el) => el.button_key_code === button_key_code
+          (el) => el.button_key_code === button_key_code,
         );
         if (mixer_element == null) return;
         this.active_mixer_class = mixer_element;
         mixer_element.button_down_handler(
-          this.mixerElementCollection.filter(
-            (el) => el.button_key_code !== button_key_code
-          ),
+          this.mixerElementCollection.filter((el) => el.button_key_code !== button_key_code),
           this.xbarElementCollection,
           this.keyerElementCollection,
-          this.encoderElementCollection
+          this.encoderElementCollection,
         );
         mixer_element.slider_check = false;
         this.active_mixer_index = this.active_mixer_class.mixerIndex;
 
         // console.log('active mixer index ', this.active_layout_index);
         break;
-      case "keyer":
+      case 'keyer':
         // let keyer_element = this.keyerElementCollection.find(
         //   (el) => el.button_key_code === button_key_code,
         // );
@@ -523,59 +441,48 @@ export class PanelClass {
         // keyer_element.keyer_handler(this.active_mixer_class, this.keyerElementCollection);
         // break;
         break;
-      case "preset":
+      case 'preset':
         let preset_element = this.xbarElementCollection.find(
-          (el) => el.presetElement.button_key_code === button_key_code
+          (el) => el.presetElement.button_key_code === button_key_code,
         );
         if (this.active_mixer_class == null || preset_element == null) return;
-        preset_element.preset_handler(
-          this.active_mixer_class,
-          this.xbarElementCollection
-        );
+        preset_element.preset_handler(this.active_mixer_class, this.xbarElementCollection);
         break;
-      case "program":
+      case 'program':
         let program_element = this.xbarElementCollection.find(
-          (el) => el.programElement.button_key_code === button_key_code
+          (el) => el.programElement.button_key_code === button_key_code,
         );
         if (this.active_mixer_class == null || program_element == null) return;
-        program_element.program_handler(
-          this.active_mixer_class,
-          this.xbarElementCollection
-        );
+        program_element.program_handler(this.active_mixer_class, this.xbarElementCollection);
         break;
-      case "encoder":
+      case 'encoder':
         console.log(button_key_code, key_group);
         break;
-      case "vm_display":
+      case 'vm_display':
         this.init_keys();
         break;
-      case "route_in":
+      case 'route_in':
         entry.button_on();
         let route_in_element = this.routeInElementCollection.find(
-          (el) => el.button_key_code === button_key_code
+          (el) => el.button_key_code === button_key_code,
         );
-        if (route_in_element == null || this.active_route_out_element == null)
-          return;
+        if (route_in_element == null || this.active_route_out_element == null) return;
         route_in_element.route_in_handler(this.active_route_out_element);
         break;
-      case "route_out":
+      case 'route_out':
         entry.button_on();
         let route_out_element = this.routeOutElementCollection.find(
-          (el) => el.button_key_code === button_key_code
+          (el) => el.button_key_code === button_key_code,
         );
         if (route_out_element == null) return;
         this.active_route_out_element = route_out_element;
         route_out_element.route_out_handler(
           this.routeOutElementCollection,
-          this.routeInElementCollection
+          this.routeInElementCollection,
         );
         break;
       default:
-        console.log(
-          "[switch_handler_down] key_code %d  key_group %s",
-          button_key_code,
-          key_group
-        );
+        console.log('[switch_handler_down] key_code %d  key_group %s', button_key_code, key_group);
     }
   }
 
@@ -583,51 +490,47 @@ export class PanelClass {
     const { key_group, button_key_code } = entry;
 
     switch (key_group) {
-      case "auto":
+      case 'auto':
         break;
-      case "cut":
+      case 'cut':
         entry.button_dimm();
         break;
-      case "shift":
+      case 'shift':
         entry.button_dimm();
         break;
-      case "keyer":
-      case "preset":
-      case "program":
-      case "mixer":
-      case "vm_display":
-      case "encoder":
-      case "route_in":
-      case "route_out":
+      case 'keyer':
+      case 'preset':
+      case 'program':
+      case 'mixer':
+      case 'vm_display':
+      case 'encoder':
+      case 'route_in':
+      case 'route_out':
         break;
       default:
-        console.log(
-          "[switch_handler_up] key_code %d  key_group %s",
-          button_key_code,
-          key_group
-        );
+        console.log('[switch_handler_up] key_code %d  key_group %s', button_key_code, key_group);
     }
   }
 
   switch_handler_number(entry: PanelElementClass, status: string) {
     const { button_key_code, key_group } = entry;
     switch (key_group) {
-      case "encoder":
+      case 'encoder':
         let encoder_element = this.encoderElementCollection.find(
-          (el) => el.button_key_code === button_key_code
+          (el) => el.button_key_code === button_key_code,
         );
         if (encoder_element == null || this.active_mixer_class == null) return;
         encoder_element.encoder_handler(status, this.active_mixer_class);
         break;
-      case "slider":
+      case 'slider':
         if (this.active_mixer_class == null) return;
         this.sliderElement.slider_handler(status, this.active_mixer_class);
         break;
       default:
         console.log(
-          "[switch_handler_number] key_code %d  key_group %s",
+          '[switch_handler_number] key_code %d  key_group %s',
           button_key_code,
-          key_group
+          key_group,
         );
     }
   }
@@ -643,21 +546,17 @@ export class PanelClass {
 
       if (!rdy && this.machine_connection_status) {
         set_no_connection_mode(this.socket);
-        if (this.panel_model === "SK_AIRFLYPROV3") {
-          this.vmStatusElement.set_display_title_label(
-            "Reconnecting",
-            ip,
-            true
-          );
+        if (this.panel_model === 'SK_AIRFLYPROV3') {
+          this.vmStatusElement.set_display_title_label('Reconnecting', ip, true);
         }
-        if (this.panel_model === "SK_MASTERKEYONE") {
+        if (this.panel_model === 'SK_MASTERKEYONE') {
           const { first_part, second_part } = ip_slicer(this.vm.raw.ip);
           this.vmStatusElement.set_display_title_label1_label2(
-            "Reconnecting",
+            'Reconnecting',
             first_part,
             second_part,
             false,
-            true
+            true,
           );
         }
       }
@@ -678,10 +577,7 @@ export class PanelClass {
   async handling_data() {
     this.check_machine_connection();
 
-    const boot_time = new Duration(
-      this.panel_model === "SK_AIRFLYPROV3" ? 0 : 2,
-      "s"
-    );
+    const boot_time = new Duration(this.panel_model === 'SK_AIRFLYPROV3' ? 0 : 2, 's');
     await this.init_keys();
     this.collect_all_panel_elements();
     const four_way_button_regex = /HWC#(\d+)..=(.+)/;
@@ -690,29 +586,29 @@ export class PanelClass {
     const connection_regex = /(\d+\.\d+\.\d+\.\d+)/g;
     const socket = enforce_nonnull(this.socket);
 
-    console.log("=== handling data ===");
+    console.log('=== handling data ===');
     let startup = true;
 
-    this.socket.write("Connections?\n");
+    this.socket.write('Connections?\n');
 
-    socket.on("data", async (data: Buffer) => {
-      let obj = data.toString("utf8");
+    socket.on('data', async (data: Buffer) => {
+      let obj = data.toString('utf8');
       if (this.key_initialising_status) {
         // console.log('abort keypress: initialising keys');
         return;
       }
       if (startup) {
-        console.log("starting panel ...");
+        console.log('starting panel ...');
         // socket.write('Connections?\n');
         startup = false;
         await pause(boot_time);
-        console.log("panel is up and ready");
+        console.log('panel is up and ready');
         this.init_panel_status = false;
       }
       let connection_match = obj.match(connection_regex);
       if (connection_match != null) {
         if (connection_match.length > 1) {
-          let connection_string = "Panel is already connected [\n";
+          let connection_string = 'Panel is already connected [\n';
           for (let el of connection_match) {
             connection_string += `   host: ${el} \n`;
           }
@@ -740,19 +636,19 @@ export class PanelClass {
 
         let entry = this.search_panel_element_collection(
           parseInt(number),
-          this.panel_element_collection.panel_elements
+          this.panel_element_collection.panel_elements,
         );
         if (entry == null)
           entry = this.search_panel_element_collection(
             parseInt(number),
-            this.panel_element_collection.xbar_panel_elements
+            this.panel_element_collection.xbar_panel_elements,
           );
         //if nothing is found
         if (entry == null) return;
-        if (status === "Up") this.switch_handler_up(entry);
-        if (status === "Down") this.switch_handler_down(entry);
+        if (status === 'Up') this.switch_handler_up(entry);
+        if (status === 'Down') this.switch_handler_down(entry);
 
-        if (entry.key_group === "slider" || entry.key_group === "encoder")
+        if (entry.key_group === 'slider' || entry.key_group === 'encoder')
           this.switch_handler_number(entry, status);
 
         return;
@@ -764,19 +660,19 @@ export class PanelClass {
 
         let entry = this.search_panel_element_collection(
           parseInt(number),
-          this.panel_element_collection.panel_elements
+          this.panel_element_collection.panel_elements,
         );
         if (entry == null)
           entry = this.search_panel_element_collection(
             parseInt(number),
-            this.panel_element_collection.xbar_panel_elements
+            this.panel_element_collection.xbar_panel_elements,
           );
 
         //if nothing is found
         if (entry == null) return;
-        if (status === "Up") this.switch_handler_up(entry);
-        if (status === "Down") this.switch_handler_down(entry);
-        if (entry.key_group === "slider" || entry.key_group === "encoder")
+        if (status === 'Up') this.switch_handler_up(entry);
+        if (status === 'Down') this.switch_handler_down(entry);
+        if (entry.key_group === 'slider' || entry.key_group === 'encoder')
           this.switch_handler_number(entry, status);
 
         return;
@@ -787,21 +683,21 @@ export class PanelClass {
         const status = enforce_nonnull(button_match[2]);
         let entry = this.search_panel_element_collection(
           parseInt(number),
-          this.panel_element_collection.panel_elements
+          this.panel_element_collection.panel_elements,
         );
 
         if (entry == null)
           entry = this.search_panel_element_collection(
             parseInt(number),
-            this.panel_element_collection.xbar_panel_elements
+            this.panel_element_collection.xbar_panel_elements,
           );
 
         //if nothing is found
         if (entry == null) return;
-        if (status === "Up") this.switch_handler_up(entry);
-        if (status === "Down") this.switch_handler_down(entry);
+        if (status === 'Up') this.switch_handler_up(entry);
+        if (status === 'Down') this.switch_handler_down(entry);
 
-        if (entry.key_group === "slider" || entry.key_group === "encoder")
+        if (entry.key_group === 'slider' || entry.key_group === 'encoder')
           this.switch_handler_number(entry, status);
         return;
       }
