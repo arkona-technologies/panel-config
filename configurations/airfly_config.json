@@ -1,221 +1,221 @@
 {
-  "$schema": "./types/schema.json",
-  "panel_ip": "172.16.39.109",
-  "panel_model": "SK_AIRFLYPROV3",
-  "panel_port": 9923,
-  "machine_ip": "172.16.232.2",
-  "panel_layout": {
-    "meLevel": [
-      {
-        "mixerElements": [
-          {
-            "buttonIndex": 0,
-            "index": 0,
-            "rootMixerIndex": 0,
-            "name": "Mixer 0"
-          }
-        ],
-        "xbarElements": [
-          {
-            "buttonIndex": 0,
-            "essenceIndex": 0,
-            "essenceType": "color_correction",
-            "name": "Cam 1"
-          },
-          {
-            "buttonIndex": 1,
-            "essenceIndex": 1,
-            "essenceType": "color_correction",
-            "name": "Cam 2"
-          },
-          {
-            "buttonIndex": 2,
-            "essenceIndex": 2,
-            "essenceType": "color_correction",
-            "name": "Cam 3"
-          },
-          {
-            "buttonIndex": 3,
-            "essenceIndex": 3,
-            "essenceType": "color_correction",
-            "name": "Schalter"
-          },
-          {
-            "buttonIndex": 4,
-            "essenceIndex": 4,
-            "essenceType": "color_correction",
-            "name": "Presentation"
-          },
-          {
-            "buttonIndex": 5,
-            "essenceIndex": 5,
-            "essenceType": "color_correction",
-            "name": "Clips"
-          }
-        ],
-        "keyerElements": [],
-        "routeOutElements": [
-          {
-            "buttonIndex": 0,
-            "name": "SDI OUT 5",
-            "outputIndex": 5,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 1,
-            "name": "Live View",
-            "outputIndex": 0,
-            "outputType": "live_view"
-          },
-          {
-            "buttonIndex": 2,
-            "name": "SDI OUT 0",
-            "outputIndex": 0,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 3,
-            "name": "SDI OUT 1",
-            "outputIndex": 1,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 4,
-            "name": "SDI OUT 2",
-            "outputIndex": 2,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 5,
-            "name": "SDI OUT 3",
-            "outputIndex": 3,
-            "outputType": "sdi_output"
-          }
-        ],
-        "routeInElements": [
-          {
-            "buttonIndex": 0,
-            "essenceIndex": 0,
-            "essenceType": "re_play",
-            "name": "Player 0"
-          },
-          {
-            "buttonIndex": 1,
-            "essenceIndex": 0,
-            "essenceType": "r_t_p_receiver",
-            "name": "RTP RX 0"
-          }
-        ]
-      },
-      {
-        "mixerElements": [
-          {
-            "buttonIndex": 0,
-            "index": 1,
-            "rootMixerIndex": 1,
-            "name": "Mixer 1"
-          }
-        ],
-        "xbarElements": [
-          {
-            "buttonIndex": 0,
-            "essenceIndex": 3,
-            "essenceType": "color_correction",
-            "name": "Schalte"
-          },
-          {
-            "buttonIndex": 1,
-            "essenceIndex": 4,
-            "essenceType": "color_correction",
-            "name": "Presentation"
-          },
-          {
-            "buttonIndex": 2,
-            "essenceIndex": 5,
-            "essenceType": "color_correction",
-            "name": "Clips"
-          },
-          {
-            "buttonIndex": 3,
-            "essenceIndex": 0,
-            "essenceType": "r_t_p_receiver",
-            "name": "Manifold 1"
-          },
+	"$schema": "./types/schema.json",
+	"panel_ip": "172.16.39.109",
+	"panel_model": "SK_AIRFLYPROV3",
+	"panel_port": 9923,
+	"machine_ip": "172.16.232.2",
+	"panel_layout": {
+		"meLevel": [
+			{
+				"mixerElements": [
+					{
+						"buttonIndex": 0,
+						"index": 0,
+						"rootMixerIndex": 0,
+						"name": "Mixer 0"
+					}
+				],
+				"xbarElements": [
+					{
+						"buttonIndex": 0,
+						"essenceIndex": 0,
+						"essenceType": "cc3d",
+						"name": "Cam 1"
+					},
+					{
+						"buttonIndex": 1,
+						"essenceIndex": 1,
+						"essenceType": "cc3d",
+						"name": "Cam 2"
+					},
+					{
+						"buttonIndex": 2,
+						"essenceIndex": 2,
+						"essenceType": "cc3d",
+						"name": "Cam 3"
+					},
+					{
+						"buttonIndex": 3,
+						"essenceIndex": 3,
+						"essenceType": "cc1d",
+						"name": "Schalter"
+					},
+					{
+						"buttonIndex": 4,
+						"essenceIndex": 4,
+						"essenceType": "cc1d",
+						"name": "Presentation"
+					},
+					{
+						"buttonIndex": 5,
+						"essenceIndex": 5,
+						"essenceType": "cc1d",
+						"name": "Clips"
+					}
+				],
+				"keyerElements": [],
+				"routeOutElements": [
+					{
+						"buttonIndex": 0,
+						"name": "SDI OUT 5",
+						"outputIndex": 5,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 1,
+						"name": "Live View",
+						"outputIndex": 0,
+						"outputType": "live_view"
+					},
+					{
+						"buttonIndex": 2,
+						"name": "SDI OUT 0",
+						"outputIndex": 0,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 3,
+						"name": "SDI OUT 1",
+						"outputIndex": 1,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 4,
+						"name": "SDI OUT 2",
+						"outputIndex": 2,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 5,
+						"name": "SDI OUT 3",
+						"outputIndex": 3,
+						"outputType": "sdi_output"
+					}
+				],
+				"routeInElements": [
+					{
+						"buttonIndex": 0,
+						"essenceIndex": 0,
+						"essenceType": "video_player",
+						"name": "Player 0"
+					},
+					{
+						"buttonIndex": 1,
+						"essenceIndex": 0,
+						"essenceType": "r_t_p_receiver",
+						"name": "RTP RX 0"
+					}
+				]
+			},
+			{
+				"mixerElements": [
+					{
+						"buttonIndex": 0,
+						"index": 1,
+						"rootMixerIndex": 1,
+						"name": "Mixer 1"
+					}
+				],
+				"xbarElements": [
+					{
+						"buttonIndex": 0,
+						"essenceIndex": 3,
+						"essenceType": "cc1d",
+						"name": "Schalte"
+					},
+					{
+						"buttonIndex": 1,
+						"essenceIndex": 4,
+						"essenceType": "cc1d",
+						"name": "Presentation"
+					},
+					{
+						"buttonIndex": 2,
+						"essenceIndex": 5,
+						"essenceType": "cc1d",
+						"name": "Clips"
+					},
+					{
+						"buttonIndex": 3,
+						"essenceIndex": 0,
+						"essenceType": "r_t_p_receiver",
+						"name": "Manifold 1"
+					},
 
-          {
-            "buttonIndex": 4,
-            "essenceIndex": 1,
-            "essenceType": "r_t_p_receiver",
-            "name": "Manifold 2"
-          },
-          {
-            "buttonIndex": 5,
-            "essenceIndex": 2,
-            "essenceType": "r_t_p_receiver",
-            "name": "Manifold 3"
-          },
-          {
-            "buttonIndex": 6,
-            "essenceIndex": 0,
-            "essenceType": "re_play",
-            "name": "Havarie"
-          }
-        ],
+					{
+						"buttonIndex": 4,
+						"essenceIndex": 1,
+						"essenceType": "r_t_p_receiver",
+						"name": "Manifold 2"
+					},
+					{
+						"buttonIndex": 5,
+						"essenceIndex": 2,
+						"essenceType": "r_t_p_receiver",
+						"name": "Manifold 3"
+					},
+					{
+						"buttonIndex": 6,
+						"essenceIndex": 0,
+						"essenceType": "video_player",
+						"name": "Havarie"
+					}
+				],
 
-        "keyerElements": [],
-        "routeOutElements": [
-          {
-            "buttonIndex": 0,
-            "name": "SDI OUT 5",
-            "outputIndex": 5,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 1,
-            "name": "Live View",
-            "outputIndex": 0,
-            "outputType": "live_view"
-          },
-          {
-            "buttonIndex": 2,
-            "name": "SDI OUT 0",
-            "outputIndex": 0,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 3,
-            "name": "SDI OUT 1",
-            "outputIndex": 1,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 4,
-            "name": "SDI OUT 2",
-            "outputIndex": 2,
-            "outputType": "sdi_output"
-          },
-          {
-            "buttonIndex": 5,
-            "name": "SDI OUT 3",
-            "outputIndex": 3,
-            "outputType": "sdi_output"
-          }
-        ],
-        "routeInElements": [
-          {
-            "buttonIndex": 0,
-            "essenceIndex": 0,
-            "essenceType": "re_play",
-            "name": "Player 0"
-          },
-          {
-            "buttonIndex": 1,
-            "essenceIndex": 0,
-            "essenceType": "r_t_p_receiver",
-            "name": "RTP RX 0"
-          }
-        ]
-      }
-    ]
-  }
+				"keyerElements": [],
+				"routeOutElements": [
+					{
+						"buttonIndex": 0,
+						"name": "SDI OUT 5",
+						"outputIndex": 5,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 1,
+						"name": "Live View",
+						"outputIndex": 0,
+						"outputType": "live_view"
+					},
+					{
+						"buttonIndex": 2,
+						"name": "SDI OUT 0",
+						"outputIndex": 0,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 3,
+						"name": "SDI OUT 1",
+						"outputIndex": 1,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 4,
+						"name": "SDI OUT 2",
+						"outputIndex": 2,
+						"outputType": "sdi_output"
+					},
+					{
+						"buttonIndex": 5,
+						"name": "SDI OUT 3",
+						"outputIndex": 3,
+						"outputType": "sdi_output"
+					}
+				],
+				"routeInElements": [
+					{
+						"buttonIndex": 0,
+						"essenceIndex": 0,
+						"essenceType": "video_player",
+						"name": "Player 0"
+					},
+					{
+						"buttonIndex": 1,
+						"essenceIndex": 0,
+						"essenceType": "r_t_p_receiver",
+						"name": "RTP RX 0"
+					}
+				]
+			}
+		]
+	}
 }
